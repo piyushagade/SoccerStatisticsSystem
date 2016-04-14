@@ -1,0 +1,4 @@
+AddHandler cgi-script .php
+DirectoryIndex index.html index.php
+errorDocument 404 404.html
+errorDocument 500 500.html

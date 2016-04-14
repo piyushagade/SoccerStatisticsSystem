@@ -1,0 +1,12 @@
+body {
+	
+}
+
+.ma_right_default{
+	margin-right: auto;
+	margin-left:auto;
+	bottom: 20%;
+	height: 100%;
+	position:absolute;
+	color: rgba(255,255,255,0.8);
+}
