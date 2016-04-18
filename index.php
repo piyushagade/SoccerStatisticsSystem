@@ -30,12 +30,12 @@
     <form id="signin_form" action="member_area.php" method="post">
     <font face="cf1" size="2px" class="input_label">Username</font>
     <center>
-	<input placeholder="john_doe" name="username" id="username" required/><br>
+	<input class="input_default" placeholder="john_doe" name="username" id="username" required/><br>
     </center>
     
     <font face="cf1" size="2px" class="input_label">Password</font>
     <center>
-	<input placeholder="********" id="password" type="password" name="password" required/><br>
+	<input class="input_default" placeholder="********" id="password" type="password" name="password" required/><br>
     </center>
     
     <center>
@@ -64,17 +64,17 @@
     <div id="ui_register_form">
     <font face="cf1" size="2px" class="input_label">Username</font>
     <center>
-	<input placeholder="john_doe" name="username" required/><br>
+	<input class="input_default" placeholder="john_doe" name="username" required/><br>
     </center>
     
     <font face="cf1" size="2px" class="input_label">Password</font>
     <center>
-	<input placeholder="********" name="password" type="password" required/><br>
+	<input class="input_default" placeholder="********" name="password" type="password" required/><br>
     </center>
     
     <font face="cf1" size="2px" class="input_label">Name</font>
     <center>
-	<input placeholder="John Doe" name="name" type="text" required/><br>
+	<input class="input_default" placeholder="John Doe" name="name" type="text" required/><br>
     </center>
 
     <font face="cf1" size="2px" class="input_label">Fav team</font>

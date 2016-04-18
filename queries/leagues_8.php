@@ -6,6 +6,8 @@ session_start();
 
 //Get Post variables
 $selected_league = $_GET['league'];
+$rank = $_GET['rank'];
+$num_seasons = $_GET['num_seasons'];
 
 $username = $_SESSION["username"];
 $password = $_SESSION["password"];
@@ -29,10 +31,25 @@ $query_div = "select ID from LEAGUE where TITLE='$selected_league'";
 	$row_div = oci_fetch_array($stid_div, OCI_BOTH);
 	$div=$row_div[0];
 	
+$ns = $num_seasons;
+$like_statement = '';
+while($ns!=-1){
+	$year = 15 - $ns;
+	if($ns!=0)
+		{
+			$like_statement = $like_statement . " dated LIKE '%".$year."' OR" ;
+		}
+		else
+		{
+			$like_statement = $like_statement . " dated LIKE '%".$year."'" ;
+		}
+	$ns = $ns-1;
+}
+	
 
 // Execute the query
 //Total goals by Home team scoring only in 1st half
- 	$query_main = "select * from (select hometeam,sum(hthg) from game where hthg = fthg and hthg <> 0 and div = '$div' group by hometeam order by sum(hthg) desc) where rownum <= 10";
+ 	$query_main = "select * from (select hometeam,sum(hthg) from GAMES G, SCORES S, RESULT R where G.ID = R.ID AND G.ID = S.ID AND G.DIV = R.DIV AND G.DIV = S.DIV AND hthg = fthg and hthg <> 0 and G.div = '$div' and ($like_statement) group by hometeam order by sum(hthg) desc) where rownum <= '$rank'";
 	$stid_main = oci_parse($conn, $query_main);
 	oci_execute($stid_main);
 	

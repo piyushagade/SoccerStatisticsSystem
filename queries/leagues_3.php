@@ -6,6 +6,8 @@ session_start();
 
 //Get Post variables
 $selected_league = $_GET['league'];
+$rank = $_GET['rank'];
+$num_seasons = $_GET['num_seasons'];
 
 $username = $_SESSION["username"];
 $password = $_SESSION["password"];
@@ -29,10 +31,25 @@ $query_div = "select ID from LEAGUE where TITLE='$selected_league'";
 	$row_div = oci_fetch_array($stid_div, OCI_BOTH);
 	$div=$row_div[0];
 	
+	
+$ns = $num_seasons;
+$like_statement = '';
+while($ns!=-1){
+	$year = 15 - $ns;
+	if($ns!=0)
+		{
+			$like_statement = $like_statement . " dated LIKE '%".$year."' OR" ;
+		}
+		else
+		{
+			$like_statement = $like_statement . " dated LIKE '%".$year."'" ;
+		}
+	$ns = $ns-1;
+}
 
 // Execute the query
 //Most games with goals only in 2nd half by Home team
- 	$query_main = "select * from (select hometeam,count(*) from game where hthg = 0 and fthg > hthg and div = '$div' group by hometeam order by count(*) desc) where rownum <= 10";
+ 	$query_main = "select * from (select hometeam, count(*) from GAMES G, SCORES S, RESULT R where G.ID = R.ID AND G.ID = S.ID AND G.DIV = R.DIV AND G.DIV = S.DIV AND  hthg = 0 and fthg > hthg and G.div = '$div' and ($like_statement) group by hometeam order by count(*) desc) where rownum <= '$rank'";
 	$stid_main = oci_parse($conn, $query_main);
 	oci_execute($stid_main);
 ?>

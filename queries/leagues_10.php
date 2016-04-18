@@ -6,6 +6,8 @@ session_start();
 
 //Get Post variables
 $selected_league = $_GET['league'];
+$rank = $_GET['rank'];
+$num_seasons = $_GET['num_seasons'];
 
 $username = $_SESSION["username"];
 $password = $_SESSION["password"];
@@ -29,10 +31,25 @@ $query_div = "select ID from LEAGUE where TITLE='$selected_league'";
 	$row_div = oci_fetch_array($stid_div, OCI_BOTH);
 	$div=$row_div[0];
 	
+$ns = $num_seasons;
+$like_statement = '';
+while($ns!=-1){
+	$year = 15 - $ns;
+	if($ns!=0)
+		{
+			$like_statement = $like_statement . " dated LIKE '%".$year."' OR" ;
+		}
+		else
+		{
+			$like_statement = $like_statement . " dated LIKE '%".$year."'" ;
+		}
+	$ns = $ns-1;
+}
+	
 
 // Execute the query
 //Total games where teams who lost home matches while winning in the first half
- 	$query_main = "select hometeam,count(*) from game where div = '$div' and  htr='H' and ftr='A' group by hometeam order by count(*) desc";
+ 	$query_main = "select hometeam,count(*) from GAMES G, SCORES S, RESULT R where G.ID = R.ID AND G.ID = S.ID AND G.DIV = R.DIV AND G.DIV = S.DIV AND G.div = '$div' and  htr='H' and ftr='A' and ($like_statement) group by hometeam order by count(*) desc";
 	$stid_main = oci_parse($conn, $query_main);
 	oci_execute($stid_main);
 	

@@ -91,7 +91,7 @@ document.redirect.submit();
 
 <!-- Member Area Container -->
 
-<div id="member_area_container" class="member_area_container">
+<div id="member_area_container" class="member_area_container hidden">
 <!--<h1 id="ma_app_title">Soccer Statistics System</h1>-->
 <div id="form">
     <section>
@@ -99,7 +99,7 @@ document.redirect.submit();
     <!-- *************************************** Left Menu Area ************************************* -->
 	<div id="left_menu">
 	    <a href="member_area.php">
-    	<font size="+2" class="black"  color="#000">Soccer Statistics System</font>
+    	<img src="img/logo_small.png" width="82%">
     	</a>
     	<br><hr><br>
     	<font size="+2">Menu</font><br><br>
@@ -107,9 +107,9 @@ document.redirect.submit();
 		<br><br>
         <button class="button_menu" id="open_menu_teams">Teams</button>
 		<br><br>
-        <button class="button_menu" id="open_menu_3">About</button>
+        <button class="button_menu" id="open_menu_mvps">MVPs</button>
 		<br><br>
-        <button class="button_menu" id="open_menu_4">Help</button>
+        <button class="button_menu" id="open_menu_search">Search</button>
 		<br><br>
         <hr><br>
 
@@ -187,19 +187,32 @@ document.redirect.submit();
     <!-- Page 2 -->
     <div id="ma_right_leagues_2" class="hidden" style="padding-top: 0px;">
     <font size="+2">Leagues - <span id="league_title_1"></span></font><hr><br>
+    
+    <table border="0px" cellpadding="20px" cellspacing="20px">
+    <tr><td style="background: rgba(255,255,255,0.1);"><font size="2px">Results to display: </font><input placeholder="10" type="number" id="rank" class="input_rank"/></td>
+    <td style="background: rgba(255,255,255,0.1);"><font size="2px">Select # of seasons: </font><input placeholder="15" type="number" id="num_seasons" class="input_rank"/></td>
+    <td style="background: rgba(255,255,255,0.1);" id="td_leagues_outcome"><font size="2px">Select outcome: </font><Select placeholder="5" type="number" id="leagues_outcome"><option value="default">-</option><option value="win">Win</option><option value="lose">Lose</option></Select></td>
+    <td style="background: rgba(255,255,255,0.1);"><font size="2px">As: </font><Select placeholder="5" type="number" id="leagues_away_home"><option value="default">-</option><option value="home">Home team</option><option value="away">Away team</option></Select></td>
+    <td style="background: rgba(255,255,255,0.1);" id="td_leagues_half"><font size="2px">Scored only in: </font><Select placeholder="5" type="number" id="leagues_half"><option value="default">-</option><option value="first_half">1st half</option><option value="second_half">2nd half</option></Select></td>
+    <td  width="20px" style="background: rgba(255,193,7,0.0);" id="td_leagues_execute" valign="middle"><button style="background: rgba(255,193,7,0.0); border: 0px;"  id="custom_execute"><img src="img/arrow.png" width="34px" height="60px"></button></td>
+    
+    </tr>
+    </table>
+    <br><hr><br>
+    
     Select one of the following option to see interesting facts of <span id="league_title_2">.</span>
     <br><hr><br>
     
     <!-- Leagues Query 1 -->
-1. Top ten teams with most home wins.
+1. Top teams with most home wins.
 <button style="float: right; margin-right:10px;" class="button_content_alt button-block" id="eq_leagues_1">Execute</button><hr class="hr_alt"><br>
 
     <!-- Leagues Query 2 -->
-2. Top ten teams with most away wins.
+2. Top teams with most away wins.
 <button style="float: right; margin-right:10px;" class="button_content_alt button-block" id="eq_leagues_2">Execute</button><hr class="hr_alt"><br>
 
     <!-- Leagues Query 3 -->
-3. Top ten home teams with goals scored only in second half.
+3. Top home teams with goals scored only in second half.
 <button style="float: right; margin-right:10px;" class="button_content_alt button-block" id="eq_leagues_3">Execute</button><hr class="hr_alt"><br>
 
     <!-- Leagues Query 4 -->
@@ -233,11 +246,186 @@ document.redirect.submit();
 
     <!-- Bottom Padding -->
     <br><br><br>
-</div>
+	</div>
+
+
+
+
+
+    <!-- *************************************** MVPs ******************************************* -->
+    
+    <!-- Page 1 -->
+    <div id="ma_right_mvps_1" class="hidden" style="padding-top: 0px;">
+        <font size="+2">Most Valuable Players</font><hr><br>
+        To begin, select two teams from the drop-down menus. Then click on proceed.
+        <br><br>
+        <!-- Dropdown Menu -->
+    <?php
+     	$query_mvp_t1 = "SELECT DISTINCT CLUB FROM PLAYER";
+		$mvp_t1 = oci_parse($conn, $query_mvp_t1);
+		oci_execute($mvp_t1);
+	?>
+    Select team A:
+    
+    <Select class="input_alt" id="selected_mvp_1" name="selected_mvp_1">
+    <?php
+	$selected_league = '';
+	while(($row_mvp_t1 = oci_fetch_array($mvp_t1, OCI_BOTH)) != false){
+		if($row_mvp_t1[0] !=''){
+			echo '<option value="'.$row_mvp_t1[0].'">'.$row_mvp_t1[0].'</option>';
+		}
+	}
+	?>
+
+ 	</Select><br>
+    
+     <?php
+     	$query_mvp_t2 = "SELECT DISTINCT CLUB FROM PLAYER";
+		$mvp_t2 = oci_parse($conn, $query_mvp_t2);
+		oci_execute($mvp_t2);
+	?>
+    
+    Select team B:
+    <Select class="input_alt" id="selected_mvp_2" name="selected_mvp_2">
+    <?php
+	$selected_league = '';
+	while(($row_mvp_t2 = oci_fetch_array($mvp_t2, OCI_BOTH)) != false){
+		if($row_mvp_t2[0] !=''){
+			echo '<option value="'.$row_mvp_t2[0].'">'.$row_mvp_t2[0].'</option>';
+		}
+	}
+	?>
+
+ 	</Select><br>
+    
+    <button class="button_content_alt button-block" id="pr_mvp_1">Proceed</button>
+    
+    <!-- Bottom Padding -->
+    <br><br><br>
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    <!-- *************************************** Search ******************************************* -->
+    
+    <!-- Page 1 -->
+    <div id="ma_right_search_1" class="hidden" style="padding-top: 0px;">
+        <font size="+2">Search</font><hr><br>
+        To begin, select any of the following options.
+        
+    <table border="0px" cellspacing="40px" cellpadding="50px">
+    <tr>
+    <td style="background: rgba(255, 255, 255, 0.1);" valign="top">
+        <!-- Dropdown Menu -->
+    <?php
+     	$query_search_club = "SELECT DISTINCT CLUB FROM PLAYER";
+		$search_club = oci_parse($conn, $query_search_club);
+		oci_execute($search_club);
+	?>
+    <span class="accent">Search Players</span><br>
+    Select club:
+    <Select id="selected_search_club" name="selected_search_club">
+    <option value="default">-</option>
+    <?php
+	while(($row_search_club = oci_fetch_array($search_club, OCI_BOTH)) != false){
+		if($row_search_club[0] !=''){
+			echo '<option value="'.$row_search_club[0].'">'.$row_search_club[0].'</option>';
+		}
+	}
+	?>
+
+ 	</Select><br>
+    
+     <?php
+     	$query_search_position = "SELECT DISTINCT POSITION FROM PLAYER";
+		$search_position = oci_parse($conn, $query_search_position);
+		oci_execute($search_position);
+	?>
+    
+    Select position:
+    <Select id="selected_search_position" name="selected_search_position">
+    <option value="default">-</option>
+    <?php
+	while(($row_search_position = oci_fetch_array($search_position, OCI_BOTH)) != false){
+		if($row_search_position[0] !=''){
+			if($row_search_position[0] == 'd'){ $pos = 'Defender'; }
+			else if($row_search_position[0] == 'g'){ $pos = 'Goalkeeper'; }
+			else if($row_search_position[0] == 'a'){ $pos = 'Striker'; }
+			else if($row_search_position[0] == 'm'){ $pos = 'Mid-fielder'; }
+			echo '<option value="'.$row_search_position[0].'">'.$pos.'</option>';
+		}
+	}
+	?>
+
+ 	</Select><br>
+    
+    
+    Minimum Goals:
+    <input placeholder="0" type="number" id="selected_search_min_goals" class="input_rank"/>
+    <br>
+    
+    Minimum Own Goals:
+    <input placeholder="0" type="number" id="selected_search_own_goals" class="input_rank"/>
+    <br>
+    
+    <button class="button_content_alt button-block" id="search_player">Search</button>
+    </td>
+    
+    
+    
+    
+    
+    <td style="background: rgba(255, 255, 255, 0.1);"  valign="top">
+        <!-- Dropdown Menu -->
+    <?php
+     	$query_search_player = "SELECT DISTINCT NAME FROM PLAYER";
+		$search_player = oci_parse($conn, $query_search_player);
+		oci_execute($search_player);
+	?>
+    
+    <span class="accent">Search Teams</span><br>
+    Select player:
+    <Select id="selected_search_player" name="selected_search_player">
+    <option value="default">-</option>
+    <?php
+	while(($row_search_player = oci_fetch_array($search_player, OCI_BOTH)) != false){
+		if($row_search_player[0] !=''){
+			echo '<option value="'.$row_search_player[0].'">'.$row_search_player[0].'</option>';
+		}
+	}
+	?>
+
+ 	</Select><br>
+    
+    
+    Minimum winning ratio:
+    <input placeholder="0" type="number" id="selected_search_min_win_ratio" class="input_rank"/>
+    <br>
+    
+    <button class="button_content_alt button-block" id="search_team">Search</button>
+    </td>
+    
+    
+    </tr>
+    </table>
+    <!-- Bottom Padding -->
+    <br><br><br>
+    
+    </div>
+    
+
+
+
 
 
     
-<!-- *******************************************   Teams **************************************************-->
+<!-- *******************************************   Teams   **************************************************-->
+    
+    <!-- Page 1 -->
     <div id="ma_right_teams_1" class="hidden" style="padding-top: 0px;">
     <font size="+2">Teams</font><hr><br>
     To begin, select a team from the drop-down menu. Select the query you want to perform.
@@ -245,7 +433,7 @@ document.redirect.submit();
 
     <!-- Dropdown Menu -->
     <?php
-     	$query_teams = "SELECT ID, LEAGUE FROM TEAM";
+     	$query_teams = "SELECT ID, LEAGUE FROM TEAM order by id asc";
 		$teams = oci_parse($conn, $query_teams);
 		oci_execute($teams);
 	?>
@@ -269,10 +457,13 @@ document.redirect.submit();
     <!-- Page 2 -->
     <div id="ma_right_teams_2" class="hidden" style="padding-top: 0px;">
     <font size="+2">Teams - <span id="team_title_1"></span></font><hr><br>
-    Select one of the following option to see interesting facts of <span id="team_title_2"></span>.
-    <br><br>
+    <br>
+    
+    <div id="teams_info_page"></div>
     
     <!-- Teams Query 1 -->
+    
+    <br><br><br>
 1. Total number of wins by the team.
 <button style="float: right; margin-right:10px;" class="button_content_alt button-block" id="eq_teams_1">Execute</button><hr class="hr_alt"><br>
 
@@ -281,12 +472,15 @@ document.redirect.submit();
     <br><br><br>
 
     </div>
-    </div>
+    
+    
+ </div>
+    
  
 	</section>
 	</div>
 
-	//DBStats
+	<!--DBStats-->
     	 <?php
              	$query_dbTuples = "select SUM(to_number(extractvalue(xmltype(dbms_xmlgen.getxml('select count(*) X from '||table_name))
                                                                               ,'/ROWSET/ROW/X'))) count
@@ -297,7 +491,7 @@ document.redirect.submit();
             <?php
         	$row_dbTuples = oci_fetch_array($dbTuples, OCI_BOTH);
         	$num_rows_dbTuples = oci_num_rows($dbTuples);
-        	$tuples = $row_dbTuples[0];
+        	$tuples = intval($row_dbTuples[0]) - 57848;
         	?>
 
     	 <?php
@@ -308,11 +502,11 @@ document.redirect.submit();
             <?php
         	$row_dbTables = oci_fetch_array($dbTables, OCI_BOTH);
         	$num_rows_dbTables = oci_num_rows($dbTables);
-        	$tables = $row_dbTables[0];
+        	$tables = intval($row_dbTables[0]) - 1;
         	?>
 
 	<div class="dbStats">
-      <span>DB Stats</span>
+      <span><img src="img/stats.png"></span>
       <div class="dbStats-content">
 
         <p><font size="2px" class="white">Count of tuples: </font><br>
@@ -324,8 +518,8 @@ document.redirect.submit();
       </div>
     </div>
 
-</div>
 
+</div>
 
 
 
@@ -341,6 +535,7 @@ document.redirect.submit();
 
 
 
+<div id="splash" class="splash hidden"><span class="splash_logo"><img src="img/splash.png"></span></div>
 
 <!-- *************************************** Import scripts ******************************************* -->
 	<script src="js/w3-include-HTML.js" type="text/javascript"></script>
@@ -348,6 +543,8 @@ document.redirect.submit();
 	<script type="text/javascript" src="js/ma_menu.js" ></script>
 	<script type="text/javascript" src="js/league_queries.js" ></script>
 	<script type="text/javascript" src="js/team_queries.js" ></script>
+	<script type="text/javascript" src="js/mvp_queries.js" ></script>
+	<script type="text/javascript" src="js/search_queries.js" ></script>
  
 
 </body>

@@ -1,22 +1,46 @@
+//Splash Screen
+$('#splash').fadeOut(0);
+$('#member_area_container').fadeOut(0);
+$('#splash').removeClass('hidden');
+$('#splash').fadeIn(1000);
+
+setTimeout(function() {	 
+	$('#splash').fadeOut(600);
+	$('#member_area_container').removeClass('hidden');
+	
+   },3400);
+   
+   
+$( document ).ready(function() {
+	setTimeout(function() {	
+	hideLoading();
+	}, 3000);
+
+});
+   
+  
+  
 $(document).ready(function(e) {   
 	$('#register_container').fadeOut(1);
 
-      $('#registration').click(function (e) {    
+       $('#registration').click(function (e) {    
 	   $('#login_container').fadeOut(600);
+	   
 	   setTimeout(function() {
-       $('#login_container').addClass('hidden');
-       $('#register_container').removeClass('hidden');
-	   $('#register_container').fadeIn(600);
-   }, 600);
+       		$('#login_container').addClass('hidden');
+       		$('#register_container').removeClass('hidden');
+	   		$('#register_container').fadeIn(600);
+   		}, 600);
       });
 	  
-	  $('#login').click(function (e) {    
+	   $('#login').click(function (e) {    
 	   $('#register_container').fadeOut(600);
-	   setTimeout(function() {
-       $('#register_container').addClass('hidden');
-       $('#login_container').removeClass('hidden');
-	   $('#login_container').fadeIn(600);
-   }, 600);
+
+	 setTimeout(function() {
+     	  $('#register_container').addClass('hidden');
+      	  $('#login_container').removeClass('hidden');
+	 	  $('#login_container').fadeIn(600);
+   		}, 600);
       });
 	  
 	 
@@ -44,14 +68,11 @@ body.css('background', backgrounds[0]);
 	
 	
 // Member area animation
-$('#ma_app_title').fadeOut(0);
 	
-	setTimeout(function() {	 
+setTimeout(function() {	 
 	$('#ma_app_title').fadeIn(1200);
 	$('#member_area_container').fadeIn(1200);
-   }, 600);
+   }, 3400);
 	  
 });
-	
-	
 	

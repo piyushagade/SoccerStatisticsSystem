@@ -118,15 +118,36 @@ div#left_menu {
 	height:100%;
 	padding: 28px;
     background: rgba(255,255,255,0.74);
+    -webkit-box-shadow: 10px 0 5px -14px rgba(0,0,0,0.20);
+    box-shadow: 10px 0 5px -8px rgba(0,0,0,0.20);
     float: left;
 }
 
 div#right_menu {
-	padding: 28px;
-	height:100%;
+    padding: 28px;
+    height:100%;
     background: rgba(255,255,255,0.60);
-	max-height:100%;
-	overflow:auto;
+    max-height:100%;
+    overflow:auto;
+}
+
+.splash {
+    width:100%;
+    position: fixed;
+    height:100%;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(255,255,255,0.94);
+    z-index: 100;
+    font-size: 120px;
+    color:  rgba(255,193,7,0.9);
+}
+
+.splash_logo {
+    top: 32%;
+    transform: 	translateY(-40%);
+    position: fixed;
+    left: 38%;
 }
 
 
@@ -225,6 +246,56 @@ h2{
 input{
     font-size:15px;
     display:block;
+    text-align: center;
+    height:40px;
+    padding:5px 6px;
+    background: rgba(255,255,255,0.2);
+    border:1px solid rgba(0,0,0,0);
+    color: #FFFFFF;
+    border-radius:0;
+    transition:border-color .25s ease, box-shadow .25s ease;
+}
+
+input:hover{
+    box-shadow: 0 0 6px #FFF;
+}
+
+input:focus{
+    outline: none !important;
+    border:1px solid #FFFFFF;
+}
+
+select{
+    font-size:15px;
+    display:block;
+    text-align: center;
+    height:50px;
+    padding:5px 6px;
+    background: rgba(255,255,255,0.2);
+    border:1px solid rgba(0,0,0,0);
+    color: rgba(255,255,255,0.9);
+    border-radius:0;
+    transition:border-color .25s ease, box-shadow .25s ease;
+}
+
+select option {
+    margin:40px;
+    background: rgba(00,00,00,0.6);
+    color: rgba(255,255,255,1);
+}
+
+select:hover{
+    box-shadow: 0 0 6px #FFF;
+}
+
+select:focus{
+    outline: none !important;
+    border:1px solid #FFFFFF;
+}
+
+.input_default{
+    font-size:15px;
+    display:block;
     width:60%;
     text-align: center;
     height:40px;
@@ -237,11 +308,11 @@ input{
     transition:border-color .25s ease, box-shadow .25s ease;
 }
 
-input:hover{
+.input_default:hover{
     box-shadow: 0 0 6px #FFF;
 }
 
-input:focus{
+.input_default:focus{
     outline: none !important;
     border:1px solid #FFFFFF;
 }
@@ -275,6 +346,30 @@ input:focus{
     border:1px solid #FFFFFF;
 }
 
+.input_rank{
+    font-size:15px;
+    display:block;
+    width:60px;
+    text-align: center;
+    height:40px;
+    padding:5px 6px;
+    background: rgba(255,255,255,0.2);
+    background-image:none;
+    border:1px solid rgba(0,0,0,0);
+    color: #FFFFFF;
+    border-radius:0;
+    transition:border-color .25s ease, box-shadow .25s ease;
+}
+
+.input_rank:hover{
+    box-shadow: 0 0 6px #FFF;
+}
+
+.input_rank:focus{
+    outline: none !important;
+    border:1px solid #FFFFFF;
+}
+
 
 .dbStats {
     position: fixed;
@@ -283,7 +378,7 @@ input:focus{
     right: 6px;
     font-size: 14px;
     background: rgba(255,255,255,0.2);
-    padding: 6px 10px;
+    padding: 3px 3px;
     color: #FFFFFF;
     display: inline-block;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
@@ -600,6 +695,14 @@ hr{
 	
 }
 
+.teams_info_page{
+	width: 90%;
+	padding: 50px;
+	background: rgba(255,255,255,0.48);
+	height: 100px;
+	overflow: scroll;
+    overflow-x: hidden;
+}
 
 /* Scrollbar */
 ::-webkit-scrollbar {
@@ -628,6 +731,10 @@ hr{
 
 span.short{
     line-height: normal;
+}
+
+.short_line_height{
+    line-height: 50px;
 }
 
 .highlight{

@@ -10,6 +10,18 @@ $('#open_menu_leagues').click(function (e) {
    }, 600);
 });
 
+$('#open_menu_mvps').click(function (e) {
+	   fadeOutAll();
+	   
+	   setTimeout(function() {
+       hideAll();
+	   
+       $('#ma_right_mvps_1').removeClass('hidden');
+	   $('#ma_right_mvps_1').fadeIn(600);
+   }, 600);
+});
+
+
 $('#open_menu_teams').click(function (e) {
 	   fadeOutAll();
 	   
@@ -18,6 +30,18 @@ $('#open_menu_teams').click(function (e) {
 	   
        $('#ma_right_teams_1').removeClass('hidden');
 	   $('#ma_right_teams_1').fadeIn(600);
+   }, 600);
+});
+
+
+$('#open_menu_search').click(function (e) {
+	   fadeOutAll();
+	   
+	   setTimeout(function() {
+       hideAll();
+	   
+       $('#ma_right_search_1').removeClass('hidden');
+	   $('#ma_right_search_1').fadeIn(600);
    }, 600);
 });
 
@@ -45,9 +69,13 @@ $('#pr_teams_1').click(function (e) {
 	   $('#ma_right_teams_1').fadeOut(600);
 	   
 	   
+	   sParameter = $('#selected_team').val().replace(/ /g,"%20");
+	   $('#teams_info_page').load('queries/teams_page.php?team='+sParameter);
+	   
 	   setTimeout(function() {	   
        $('#ma_right_teams_2').removeClass('hidden');
 	   $('#ma_right_teams_2').fadeIn(600);
+	   
    }, 600);
 });
 
@@ -74,6 +102,8 @@ function fadeOutAll(){
 	   $('#ma_right_leagues_2').fadeOut(500);
 	   $('#ma_right_teams_1').fadeOut(500);
 	   $('#ma_right_teams_2').fadeOut(500);
+	   $('#ma_right_mvps_1').fadeOut(500);
+	   $('#ma_right_search_1').fadeOut(500);
 }  
 
 //Hide All Pages
@@ -83,11 +113,14 @@ function hideAll(){
 	   $('#ma_right_leagues_2').addClass('hidden');
 	   $('#ma_right_teams_1').addClass('hidden');
 	   $('#ma_right_teams_2').addClass('hidden');
+	   $('#ma_right_mvps_1').addClass('hidden');
+	   $('#ma_right_search_1').addClass('hidden');
 }
 
 
 //Result Frame
 function showResultFrame(){
+	showLoading();
 	
 	setTimeout(function() {	 
 	$("#result_frame_bg").removeClass("hidden");
@@ -96,39 +129,23 @@ function showResultFrame(){
 	result_frame_width = ($('#result_frame').width()+100).toString();
 	result_frame_width_added = ($('#result_frame').width()+150).toString();
 	result_frame_width_half = (($('#result_frame').width()+200)/2).toString();
-	showLoading();
 	
-	while(result_frame_width == 100){
-		
-		
-		setTimeout(function() {	 
-			result_frame_width = ($('#result_frame').width()+100).toString();
-			result_frame_width_added = ($('#result_frame').width()+150).toString();
-		}, 500);
+	if(result_frame_width == '106') {
+		result_frame_width = '506';
+		result_frame_width_added = '556'
+		result_frame_width_half = '303'
 	}
 	
 	
-		
-	$('#member_area_container').animate({
-    'marginLeft' : "-="+result_frame_width_added
-	});
+	setTimeout(function() {	 
+			result_frame_width = ($('#result_frame').width()+100).toString();
+			result_frame_width_added = ($('#result_frame').width()+150).toString();
+		}, 500);
 	
-	$('#result_frame').animate({
-    'marginLeft' : "-="+result_frame_width
-	});
-	$('#result_frame_close').animate({
-    'marginLeft' : "-="+"490",
-	'marginTop' : "+=20",
-	});
 	
-	$("#result_frame").removeClass("hidden");
-    $("#result_frame_close").removeClass("hidden");
+	slideResultFrameIn();
 	
-	setTimeout(function() {	
-	hideLoading();
-	}, 1000);
-	
-   }, 800);
+   }, 2800);
 }
 
 
@@ -138,6 +155,12 @@ function closeResultFrame(){
 	result_frame_width = ($('#result_frame').width()+100).toString();
 	result_frame_width_added = ($('#result_frame').width()+150).toString();
 	result_frame_width_half = (($('#result_frame').width()+200)/2).toString();
+	
+	if(result_frame_width == '106') {
+		result_frame_width = '506';
+		result_frame_width_added = '556'
+		result_frame_width_half = '303'
+	}
 	
 	$('#member_area_container').animate({
     'marginLeft' : "+="+result_frame_width_added
@@ -173,10 +196,39 @@ function hideLoading(){
 }
 
 
-
-$( document ).ready(function() {
+function slideResultFrameIn(){
+	$('#member_area_container').animate({
+  	 	 'marginLeft' : "-="+result_frame_width_added
+	});
+	
+	$('#result_frame').animate({
+   		 'marginLeft' : "-="+result_frame_width
+	});
+	$('#result_frame_close').animate({
+    	'marginLeft' : "-="+"490",
+		'marginTop' : "+=20",
+	});
+	
+	$("#result_frame").removeClass("hidden");
+    $("#result_frame_close").removeClass("hidden");
+	
 	setTimeout(function() {	
-	hideLoading();
-	}, 1800);
+		hideLoading();
+	}, 1000);
+}
 
-});
+
+function hideFade(element){
+	 $(element).fadeOut(400);
+	  setTimeout(function() {
+	 	$(element).addClass('hidden');
+   	  }, 600);
+}
+
+function fadeShow(element){
+	$(element).removeClass('hidden');
+   	  
+	setTimeout(function() {
+	 	$(element).fadeIn(400);
+	 }, 600);
+}
