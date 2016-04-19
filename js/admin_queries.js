@@ -30,7 +30,10 @@ $('#admin_add_user').click(function (e) {
 		sParameter_5 = '0';
 	}
 	
-    $("#result_frame").load("queries/admin/add_user.php?username="+sParameter_1+"&name="+sParameter_2+"&password="+sParameter_3+"&admin="+sParameter_4+"&premium="+sParameter_5);
+	
+	sParameter_6 = $("#admin_selected_team").val().replace(/ /g,"%20");
+	
+    $("#result_frame").load("queries/admin/add_user.php?username="+sParameter_1+"&name="+sParameter_2+"&password="+sParameter_3+"&admin="+sParameter_4+"&premium="+sParameter_5+"&team="+sParameter_6);
 
 
 });

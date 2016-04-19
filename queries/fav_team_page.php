@@ -111,8 +111,13 @@ $year_count = $year_count - 1;
 </head>
 <body>
 
-<font class="black" size="+2">Team Performance & History</font>
-<br><br>
+<table border="0px" style="background: rgba(255, 255, 255, 0.2);" cellpadding="10px" cellspacing="20px">
+<tr><td>
+<font class="black" size="+2">Fav Team Performance</font>
+</td>
+</tr>
+</table>
+
 
 <table border="0px" style="background: rgba(255, 255, 255, 0.2);" cellpadding="10px" cellspacing="20px">
     	<tr>
@@ -126,7 +131,7 @@ $year_count = $year_count - 1;
         
         <td valign="top">
         <font size="2px">Games played</font><br>
-        <font size="32px" class="accent_dark short_line_height"><?php echo $row_games[0]; $no_games=$row_games[0]; ?></font>
+        <font size="6px" class="accent_dark short_line_height"><?php echo $row_games[0]; $no_games=$row_games[0]; ?></font>
         </td>
 <?php
 		}
@@ -144,7 +149,7 @@ $year_count = $year_count - 1;
         
         <td valign="top">
         <font size="2px">Games won</font><br>
-        <font size="32px" class="accent_dark short_line_height"><?php echo $row_won[0]; $games_won = $row_won[0]; ?></font>
+        <font size="6px" class="accent_dark short_line_height"><?php echo $row_won[0]; $games_won = $row_won[0]; ?></font>
         </td>
 <?php
 		}
@@ -157,7 +162,7 @@ $year_count = $year_count - 1;
 ?>
         <td valign="top">
         <font size="2px">Winning ratio</font><br>
-        <font size="32px" class="accent_dark short_line_height"><?php echo number_format((float)$games_won/$no_games, 2, '.', ''); ?></font>
+        <font size="6px" class="accent_dark short_line_height"><?php echo number_format((float)$games_won/$no_games, 2, '.', ''); ?></font>
         </td>
 
 
@@ -168,28 +173,18 @@ $year_count = $year_count - 1;
 
 
 
-
-
-<table border="0px" style="background: rgba(255, 255, 255, 0.14);" cellpadding="20px" cellspacing="10px">
-    	<tr>
-<td><font size="26px" class="black short_line_height"><?php echo $selected_team; ?></font></td>
-
-        </tr>
-</table>
-
-
 <table border="0px" style="background: rgba(255, 255, 255, 0.2);" cellpadding="10px" cellspacing="10px">
     	<tr>
  
 
         <td valign="top">
         <font size="2px">Best year</font><br>
-        <font size="32px" class="accent_dark short_line_height"><?php echo  $best_year ?></font>
+        <font size="6px" class="accent_dark short_line_height"><?php echo  $best_year ?></font>
         </td>
         
         <td valign="top" style="padding-left:20px;">
         <font size="2px">Wins</font><br>
-        <font size="32px" class="accent_dark short_line_height"><?php echo  $best_count[0] ?></font>
+        <font size="6px" class="accent_dark short_line_height"><?php echo  $best_count[0] ?></font>
         </td>
 </td>
 
@@ -207,12 +202,12 @@ $year_count = $year_count - 1;
 ?>
         <td valign="top">
         <font size="2px">Fav opponent on home ground</font><br>
-        <font size="32px" class="accent_dark short_line_height"><?php echo  $row_fav_opponenet_home[0].":"; ?></font>
+        <font size="6px" class="accent_dark short_line_height"><?php echo  $row_fav_opponenet_home[0].":"; ?></font>
         </td>
         
         <td valign="top" style="padding-left:10px;">
         <font size="2px">Wins</font><br>
-        <font size="32px" class="accent_dark short_line_height"><?php echo  $row_fav_opponenet_home[1]; } }?></font>
+        <font size="6px" class="accent_dark short_line_height"><?php echo  $row_fav_opponenet_home[1]; } }?></font>
         </td>
 </td>
 
@@ -224,12 +219,12 @@ $year_count = $year_count - 1;
 ?>
         <td valign="top" style="padding-left:30px;">
         <font size="2px">Fav opponent on away ground</font><br>
-        <font size="32px" class="accent_dark short_line_height"><?php echo  $row_fav_opponenet_away[0].":"; ?></font>
+        <font size="6px" class="accent_dark short_line_height"><?php echo  $row_fav_opponenet_away[0].":"; ?></font>
         </td>
         
         <td valign="top" style="padding-left:10px;">
         <font size="2px">Wins</font><br>
-        <font size="32px" class="accent_dark short_line_height"><?php echo  $row_fav_opponenet_away[1]; } }?></font>
+        <font size="6px" class="accent_dark short_line_height"><?php echo  $row_fav_opponenet_away[1]; } }?></font>
         </td>
 </td>
 
@@ -248,12 +243,12 @@ $year_count = $year_count - 1;
 ?>
         <td valign="top">
         <font size="2px">Deadliest opponent on home ground</font><br>
-        <font size="32px" class="accent_dark short_line_height"><?php echo  $row_dead_opponenet_home[0].":"; ?></font>
+        <font size="6px" class="accent_dark short_line_height"><?php echo  $row_dead_opponenet_home[0].":"; ?></font>
         </td>
         
         <td valign="top" style="padding-left:10px;">
         <font size="2px">Loss</font><br>
-        <font size="32px" class="accent_dark short_line_height"><?php echo  $row_dead_opponenet_home[1]; } }?></font>
+        <font size="6px" class="accent_dark short_line_height"><?php echo  $row_dead_opponenet_home[1]; } }?></font>
         </td>
 </td>
 
@@ -265,47 +260,16 @@ $year_count = $year_count - 1;
 ?>
         <td valign="top" style="padding-left:30px;">
         <font size="2px">Deadliest opponent on away ground</font><br>
-        <font size="32px" class="accent_dark short_line_height"><?php echo  $row_dead_opponenet_away[0].":"; ?></font>
+        <font size="6px" class="accent_dark short_line_height"><?php echo  $row_dead_opponenet_away[0].":"; ?></font>
         </td>
         
         <td valign="top" style="padding-left:10px;">
         <font size="2px">Loss</font><br>
-        <font size="32px" class="accent_dark short_line_height"><?php echo  $row_dead_opponenet_away[1]; } }?></font>
+        <font size="6px" class="accent_dark short_line_height"><?php echo  $row_dead_opponenet_away[1]; } }?></font>
         </td>
 
  </tr>
 </table>
-
-
-<br><hr/><br><br>
- 
-<font class="black" size="+2">Comapare with other teams</font>
-<br><hr class="hr_alt"/><br>  
-
-To begin, select a team from the drop-down menu.
-    <br><br>
-
-    
-    <?php
-     	$query_teams = "SELECT ID, LEAGUE FROM TEAM where league=(select league from TEAM where id='$selected_team') order by id asc";
-		$teams = oci_parse($conn, $query_teams);
-		oci_execute($teams);
-	?>
-    Select a team:
-    <Select class="input_alt" id="selected_team_compare" name="selected_team_compare">
-    <?php
-	while(($row_teams = oci_fetch_array($teams, OCI_BOTH)) != false){
-		$num_rows_teams = oci_num_rows($teams);
-		if($row_teams[0] !=''){
-			echo '<option value="'.$row_teams[0].'">'.$row_teams[0].'</option>';
-		}
-	}
-	?>
-
- 	</Select><br>
-    
-    <button class="button_content_alt button-block" id="pr_team_compare">Compare</button>
-    <br><br>
 
 
 

@@ -88,12 +88,8 @@ document.redirect.submit();
     	<font size="+2">Menu</font><br><br>
         <button class="button_menu" id="open_menu_leagues">Users</button>
 		<br><br>
-        <button class="button_menu" id="open_menu_teams">Teams</button>
-		<br><br>
-        <button class="button_menu" id="open_menu_3">About</button>
-		<br><br>
-        <button class="button_menu" id="open_menu_4">Help</button>
-		<br><br>
+        <br>
+        
         <hr><br>
 		<center>Admin: <span class="accent"><?php echo $name ?></span>.</center>
         <br><br>
@@ -145,6 +141,28 @@ document.redirect.submit();
     <label>Username:</label><input type="text" class="input_alt" id="new_username" name="new_username">
     <label>Name:</label><input type="text" class="input_alt" id="new_name" name="new_name">
     <label>Password:</label><input type="password" class="input_alt" id="new_password" name="new_password">
+    <label>Fav team:</label
+    
+    ><!-- Dropdown Menu -->
+        <?php
+         	$query_teams = "SELECT ID, LEAGUE FROM TEAM";
+    		$teams = oci_parse($conn, $query_teams);
+    		oci_execute($teams);
+    	?>
+
+        <Select class="input_alt" id="admin_selected_team" name="admin_selected_team">
+        <?php
+    	
+    	while(($row_teams = oci_fetch_array($teams, OCI_BOTH)) != false){
+    		$num_rows_teams = oci_num_rows($teams);
+    		if($row_teams[0] !=''){
+    			echo '<option value="'.$row_teams[0].'">'.$row_teams[0].'</option>';
+    		}
+    	}
+    	?>
+
+     	</Select><br>
+    
     <label>Admin:</label><input type="checkbox" class="input_alt_chkbox" id="new_admin" name="new_admin">
     <label>Premium User:</label><input type="checkbox" class="input_alt_chkbox" id="new_premium" name="new_premium">
     

@@ -36,6 +36,7 @@ else
 		$myTeam = $row[3];
 		$prevVisit = $row[4];
 		$admin = $row[1];
+		$premium = $row[2];
 
         $datetime = explode(" ",$prevVisit);
         $date = $datetime[0];
@@ -43,7 +44,7 @@ else
         $time = date("h:i A",strtotime($time));
 
 		//Update PrevVisit Entry
-		$query_prevvisit = "update USERS set PREVVISIT = (SELECT CURRENT_TIMESTAMP  FROM DUAL)";
+		$query_prevvisit = "update USERS set PREVVISIT = (SELECT CURRENT_TIMESTAMP  FROM DUAL) where username='$username'";
         $stid_prevvisit = oci_parse($conn, $query_prevvisit);
         oci_execute($stid_prevvisit);
 	}
@@ -121,7 +122,7 @@ document.redirect.submit();
 		<font size="2px">Logged in as: </font><br><span class="black"><font size="4px"><?php echo $name ?></font></span>.
 
         <br>
-        <font size="2px">Fav team: </font><br><span class="black"><font size="4px"><?php echo $myTeam ?></font></span>.
+        <font size="2px">Fav team: </font><br><span class="black"><font size="4px"><span id="span_fav_team"><?php echo $myTeam ?></span></font></span>.
 
         <br>
         <?php
@@ -195,13 +196,14 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
 	
 ?>
 
-<table border="0px" style="background: rgba(255, 255, 255, 0.01);" cellpadding="10px" cellspacing="6px">
+<table border="0px" style="background: rgba(255, 255, 255, 0.01);" cellpadding="10px" cellspacing="4px">
     <tr>
       <td>
-        <table border="0px" style="background: rgba(255, 255, 255, 0.08);" cellpadding="10px" cellspacing="10px">
+        <table border="0px" style="background: rgba(255, 255, 255, 0.14);" cellpadding="10px" cellspacing="10px">
     	<tr>
         	<td>
-            	 <font size="6px">Current statistics</font>
+            	 <font size="4px">EPL statistics</font><br>
+                 <font size="2px" class="black minute_line_height">2015-16</font>
             </td>
         </tr>
         </table>
@@ -211,50 +213,50 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
 		else if($row_most_valuable_player[2] === 'a'){ $mvp_pos = 'Striker';}
 		else if($row_most_valuable_player[2] === 'd'){ $mvp_pos = 'Defender';}
 		else if($row_most_valuable_player[2] === 'g'){ $mvp_pos = 'Goalkeeper';} ?>
-        <table border="0px" style="background: rgba(255, 255, 255, 0.14);" cellpadding="10px" cellspacing="10px">
+        <table border="0px" style="background: rgba(255, 255, 255, 0.24);" cellpadding="10px" cellspacing="10px">
     	<tr>
         	<td>
-                <font size="2px">Most valuable person</font><br>
+                <font size="3px">Most valuable person</font><br>
        			<font size="6px" class="accent_dark short_line_height"><?php echo $row_most_valuable_player[0]; ?></font><br>
                 <font size="2px" class="black minute_line_height"><?php echo $mvp_pos.", "; ?></font><font size="2px" class="black minute_line_height"><?php echo $row_most_valuable_player[1]; ?></font>
             </td>
         </tr>
         </table>
         
-        <table border="0px" style="background: rgba(255, 255, 255, 0.14);" cellpadding="10px" cellspacing="10px">
+        <table border="0px" style="background: rgba(255, 255, 255, 0.24);" cellpadding="10px" cellspacing="10px">
     	<tr>
         	<td>
-                <font size="2px">Top scorer</font><br>
+                <font size="3px">Top scorer</font><br>
        			<font size="6px" class="accent_dark short_line_height"><?php echo $row_most_goals[0]; ?></font><br>
                 <font size="2px" class="black minute_line_height"><?php echo $row_most_goals[1].", Goals: "; ?></font><font size="2px" class="black minute_line_height"><?php echo $row_most_goals[2]; ?></font>
             </td>
         	<td>
-                <font size="2px">Most Assists</font><br>
+                <font size="3px">Most Assists</font><br>
        			<font size="6px" class="accent_dark short_line_height"><?php echo $row_most_assists[0]; ?></font><br>
                 <font size="2px" class="black minute_line_height"><?php echo $row_most_assists[1].", Assits: "; ?></font><font size="2px" class="black minute_line_height"><?php echo $row_most_assists[2]; ?></font>
             </td>
         </tr>
         </table>
         
-        <table border="0px" style="background: rgba(255, 255, 255, 0.14);" cellpadding="10px" cellspacing="10px">
+        <table border="0px" style="background: rgba(255, 255, 255, 0.24);" cellpadding="10px" cellspacing="10px">
     	<tr>
         	<td>
-                <font size="2px">Best goalkeeper</font><br>
+                <font size="3px">Best goalkeeper</font><br>
        			<font size="6px" class="accent_dark short_line_height"><?php echo $row_most_saves[0]; ?></font><br>
                 <font size="2px" class="black minute_line_height"><?php echo $row_most_saves[1].", Saves: "; ?></font><font size="2px" class="black minute_line_height"><?php echo $row_most_saves[2]; ?></font>
             </td>
         </tr>
         </table>
         
-        <table border="0px" style="background: rgba(255, 255, 255, 0.14);" cellpadding="10px" cellspacing="10px">
+        <table border="0px" style="background: rgba(255, 255, 255, 0.24);" cellpadding="10px" cellspacing="10px">
     	<tr>
         	<td>
-                <font size="2px">Most red cards</font><br>
+                <font size="3px">Most red cards</font><br>
        			<font size="6px" class="accent_dark short_line_height"><?php echo $row_most_red_cards[0]; ?></font><br>
                 <font size="2px" class="black minute_line_height"><?php echo $row_most_red_cards[1].", Red cards: "; ?></font><font size="2px" class="black minute_line_height"><?php echo $row_most_red_cards[2]; ?></font>
             </td>
             <td>
-                <font size="2px">Most yellow cards</font><br>
+                <font size="3px">Most yellow cards</font><br>
        			<font size="6px" class="accent_dark short_line_height"><?php echo $row_most_yellow_cards[0]; ?></font><br>
                 <font size="2px" class="black minute_line_height"><?php echo $row_most_yellow_cards[1].", Yellow cards: "; ?></font><font size="2px" class="black minute_line_height"><?php echo $row_most_yellow_cards[2]; ?></font>
             </td>
@@ -263,6 +265,8 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
         
       </td>
       
+      <td>
+      </td>
       <td>
       </td>
       
@@ -275,13 +279,14 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
 	oci_execute($stid_dom_league);
 ?>
         
-        <table border="0px" style="background: rgba(255, 255, 255, 0.08);" cellpadding="10px" cellspacing="10px">
-        <tr>
-        	<td>
-       			<font size="6px">League</font>
+        <table border="0px" style="background: rgba(255, 255, 255, 0.24);" cellpadding="10px" cellspacing="10px">
+        <tr >
+        	<td valign="top" >
+       			<font size="6px">League</font><br>
+                <font size="2px" class="black minute_line_height">*since 1997</font>
             </td>
             <td></td>
-            <td>
+            <td valign="top">
        			<font size="6px">Goals</font>
             </td>
         </tr>
@@ -307,10 +312,16 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
 		?>
         </table>
         
-        </td>  
+        </td>
+        
+        <td>
+        </td>
+             
+        
         
         </tr>
         </table>
+        
         
         
         <!-- bottom padding -->
@@ -388,7 +399,7 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
 <button style="float: right; margin-right:10px;" class="button_content_alt button-block" id="eq_leagues_3">Execute</button><hr class="hr_alt"><br>
 
     <!-- Leagues Query 4 -->
-4. Top home teams with most goals scored in sencond half.
+4. Top home teams with most goals scored in second half.
 <button style="float: right; margin-right:10px;" class="button_content_alt button-block" id="eq_leagues_4">Execute</button><hr class="hr_alt"><br>
 
     <!-- Leagues Query 5 -->
@@ -602,7 +613,7 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
     <!-- Page 1 -->
     <div id="ma_right_teams_1" class="hidden" style="padding-top: 0px;">
     <font size="+2">Teams</font><hr><br>
-    To begin, select a team from the drop-down menu. Select the query you want to perform.
+    To begin, select a team from the drop-down menu.
     <br><br>
 
     <!-- Dropdown Menu -->
@@ -715,6 +726,9 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
 
 
 <div id="splash" class="splash hidden"><span class="splash_logo"><img src="img/splash.png"></span></div>
+
+<div id="premium_box" class="premium_box"><?php echo $premium ?></div>
+
 
 <!-- *************************************** Import scripts ******************************************* -->
 	<script src="js/w3-include-HTML.js" type="text/javascript"></script>

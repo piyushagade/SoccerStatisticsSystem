@@ -751,3 +751,19 @@ span.short{
     background: rgba(255, 193, 7, 0.6);
     padding: 6px;
 }
+
+.premium_box{
+	position:fixed;
+	opacity: 0;
+}
+
+.locked{
+    background: rgba(255, 255, 255, 0.6);
+	color: rgba(0, 0, 0, 0.4);
+	background-size: 28px 28px;
+	background-repeat: no-repeat;
+	position:relative;
+	
+	
+	transition: all 0.1s ease-out;
+}

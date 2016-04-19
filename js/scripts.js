@@ -3,6 +3,7 @@ $('#splash').fadeOut(0);
 $('#member_area_container').fadeOut(0);
 $('#splash').removeClass('hidden');
 $('#splash').fadeIn(1000);
+premium = 0;
 
 setTimeout(function() {	 
 	$('#splash').fadeOut(600);
@@ -15,6 +16,16 @@ $( document ).ready(function() {
 	setTimeout(function() {	
 	hideLoading();
 	}, 3000);
+	
+	
+	if($('#premium_box').html() === '0'){
+		$('#eq_leagues_9').addClass('locked');
+		$('#eq_leagues_10').addClass('locked');
+		$('#pr_team_compare').addClass('locked');
+	}
+	
+	 fav_team = $('#span_fav_team').html();
+	 $('#fav_team_info').load('queries/fav_team_page.php?team='+fav_team);
 
 });
    
@@ -43,8 +54,6 @@ $(document).ready(function(e) {
    		}, 600);
       });
 	  
-	 
-	 
 	 
 var body = $('#background-image');
 var backgrounds = [
@@ -75,4 +84,3 @@ setTimeout(function() {
    }, 3400);
 	  
 });
-	

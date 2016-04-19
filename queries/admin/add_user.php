@@ -10,6 +10,7 @@ $selected_name = $_GET['name'];
 $selected_password = $_GET['password'];
 $selected_admin = $_GET['admin'];
 $selected_premium = $_GET['premium'];
+$selected_team = $_GET['team'];
 
 $username = $_SESSION["username"];
 $password = $_SESSION["password"];
@@ -27,7 +28,7 @@ else
 }
 
 //Delete User
- 	$query_main = "insert into USERS values ('$selected_username', '$selected_password', '$selected_name', '$selected_admin', '$selected_premium')";
+ 	$query_main = "insert into USERS values ('$selected_username', '$selected_password', '$selected_name', '$selected_admin', '$selected_premium', '$selected_team', (SELECT TO_TIMESTAMP('9999/01/01 00:00:00', 'YYYY/MM/DD HH24:MI:SS') FROM dual))";
 	$stid_main = oci_parse($conn, $query_main);
 	oci_execute($stid_main);
 	

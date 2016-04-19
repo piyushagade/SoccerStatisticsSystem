@@ -90,25 +90,26 @@ $('#eq_leagues_8').click(function (e) {
 });
 
 $('#eq_leagues_9').click(function (e) {
-
+	if($('#premium_box').html() === '1'){
     showResultFrame();
 	
 	setLeagueVariables();
     
 	sParameter = $("#selected_league").val().replace(/ /g,"%20");
     $("#result_frame").load("queries/leagues_9.php?league="+sParameter+"&rank="+rank+"&num_seasons="+num_seasons);
-
+	}
 });
 
 $('#eq_leagues_10').click(function (e) {
-
+	
+	if($('#premium_box').html() === '1'){
     showResultFrame();
 	
 	setLeagueVariables();
     
 	sParameter = $("#selected_league").val().replace(/ /g,"%20");
     $("#result_frame").load("queries/leagues_10.php?league="+sParameter+"&rank="+rank+"&num_seasons="+num_seasons);
-
+	}
 });
 
 

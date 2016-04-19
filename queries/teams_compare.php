@@ -50,7 +50,7 @@ else
 //	Stats
  	$query_stats = "select (DRAWS.A1) / (DRAWS.A1 + WINS1.A2 + WINS2.A3),( WINS1.A2) / (DRAWS.A1 + WINS1.A2 + WINS2.A3),(WINS2.A3) / (DRAWS.A1 + WINS1.A2 + WINS2.A3) FROM 
   (select count(*) A1 from games,result where games.id = result.id and games.div = result.div and 
-((hometeam = 'Man United' and awayteam = '$selected_team_2' and result.FTR = 'D') or (awayteam = '$selected_team_1' and hometeam = '$selected_team_2' and result.FTR = 'D'))) DRAWS ,
+((hometeam = '$selected_team_1' and awayteam = '$selected_team_2' and result.FTR = 'D') or (awayteam = '$selected_team_1' and hometeam = '$selected_team_2' and result.FTR = 'D'))) DRAWS ,
   (select count(*) A2 from games,result where games.id = result.id and games.div = result.div and 
 ((hometeam = '$selected_team_1' and awayteam = '$selected_team_2' and result.FTR = 'H') or (awayteam = '$selected_team_1' and hometeam = '$selected_team_2' and result.FTR = 'A'))) WINS1 ,
   (select count(*) A3 from games,result where games.id = result.id and games.div = result.div and 
@@ -75,8 +75,7 @@ else
 
 <center>
 <br>
-<span>Following table shows the number of matches won by <u><?php echo $selected_team_1 ?></u> (either as a Home or Away team.)<br>
-The score represents the number of total wins.</span>
+<span>Following table shows the comparision between <u><?php echo $selected_team_1 ?></u> and <u><?php echo $selected_team_2 ?></u>.<br></span>
 <br><br>
 
 <table class="result_table">
@@ -124,6 +123,13 @@ The score represents the number of total wins.</span>
         <td>Draws</td>
         <td colspan="2"><?php echo $draws; ?></td>
 </table>
+
+<br><br>
+Clearly, statistically <?php 
+if($row_stats[1] > $row_stats[2]){ echo $selected_team_1;}
+else if($row_stats[1] < $row_stats[2]){ echo $selected_team_2;} ?>
+ has a better chance of winning in this fixture.
+
 </center>
 
 </body>
