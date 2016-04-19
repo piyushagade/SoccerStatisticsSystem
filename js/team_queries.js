@@ -54,3 +54,15 @@ $('#eq_teams_6').click(function (e) {
     $("#result_frame").load("queries/teams_6.php?team="+sParameter);
 
 });
+
+
+
+$('#pr_team_compare').click(function (e) {
+    
+	sParameter1 = $("#selected_team").val().replace(/ /g,"%20");
+	sParameter2 = $("#selected_team_compare").val().replace(/ /g,"%20");
+	if(sParameter1 !== sParameter2){
+   		showResultFrame();
+    	$("#result_frame").load("queries/teams_compare.php?team_1="+sParameter1+"&team_2="+sParameter2);
+	}
+});

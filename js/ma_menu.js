@@ -10,6 +10,17 @@ $('#open_menu_leagues').click(function (e) {
    }, 600);
 });
 
+$('#open_menu_home').click(function (e) {
+	   fadeOutAll();
+	   
+	   setTimeout(function() {
+       hideAll();
+	   
+       $('#ma_right_default').removeClass('hidden');
+	   $('#ma_right_default').fadeIn(600);
+   }, 600);
+});
+
 $('#open_menu_mvps').click(function (e) {
 	   fadeOutAll();
 	   

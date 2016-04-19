@@ -103,7 +103,9 @@ document.redirect.submit();
     	</a>
     	<br><hr><br>
     	<font size="+2">Menu</font><br><br>
-        <button class="button_menu" id="open_menu_leagues">League</button>
+        <button class="button_menu" id="open_menu_home">Home</button>
+		<br><br>
+        <button class="button_menu" id="open_menu_leagues">Leagues</button>
 		<br><br>
         <button class="button_menu" id="open_menu_teams">Teams</button>
 		<br><br>
@@ -132,7 +134,7 @@ document.redirect.submit();
         </span>
         <br><br>
         <button class="button_menu_alt" id="ma_logout">Logout</button>
-		<br><br>
+		<br>
         <hr><br>
     </div>
     
@@ -147,7 +149,162 @@ document.redirect.submit();
     <br><hr><br>
         <span class"paragraph_1">
         Soccer Statistics System is an interactive application that offers user intriguing facts about soccer.<br><br>Know the chances of your favourite team winning against another based on previous performances, or probability of a player scoring against a team, or whether a team will score in first half or the second of the match, etc.
-        </span><hr class="hr_alt"/>
+        </span><hr class="hr_alt"/><br>
+        <br>
+        
+<?php
+	//Most number of goals
+	$query_most_goals = "select * from (select player.name,player.club,sum(playerdata.GS) from player,playerdata where player.id = playerdata.id group by player.name,player.club order by sum(playerdata.GS) desc) where rownum=1";
+	$stid_most_goals = oci_parse($conn, $query_most_goals);
+	oci_execute($stid_most_goals);
+	
+	//Most number of Assists
+	$query_most_assists = "select * from (select player.name,player.club,sum(playerdata.A) from player,playerdata where player.id = playerdata.id group by player.name,player.club order by sum(playerdata.A) desc) where rownum=1";
+	$stid_most_assists = oci_parse($conn, $query_most_assists);
+	oci_execute($stid_most_assists);
+	
+	//Most number of saves by a Goalkeeper
+	$query_most_saves = "select * from (select player.name,player.club,sum(playerdata.s) from player,playerdata where player.id = playerdata.id and player.POSITION = 'g' group by player.name,player.club order by sum(playerdata.S) desc) where rownum=1";
+	$stid_most_saves = oci_parse($conn, $query_most_saves);
+	oci_execute($stid_most_saves);
+	
+	//Most number of Red Cards
+	$query_most_red_cards = "select * from (select player.name,player.club,sum(playerdata.RC) from player,playerdata where player.id = playerdata.id group by player.name,player.club order by sum(playerdata.RC) desc) where rownum=1";
+	$stid_most_red_cards = oci_parse($conn, $query_most_red_cards);
+	oci_execute($stid_most_red_cards);
+	
+	//Most number of Yellow Cards
+	$query_most_yellow_cards = "select * from (select player.name,player.club,sum(playerdata.YC) from player,playerdata where player.id = playerdata.id group by player.name,player.club order by sum(playerdata.YC) desc) where rownum=1";
+	$stid_most_yellow_cards = oci_parse($conn, $query_most_yellow_cards);
+	oci_execute($stid_most_yellow_cards);
+	
+	//Most valuable player of the season
+	$query_most_valuable_player = "select * from (select player.name,player.club,player.position,sum(playerdata.p) from player,playerdata where player.id = playerdata.id
+group by player.name,player.club,player.position order by sum(playerdata.p) desc) where rownum=1";
+	$stid_most_valuable_player = oci_parse($conn, $query_most_valuable_player);
+	oci_execute($stid_most_valuable_player);
+	
+	
+	
+	$row_most_valuable_player = oci_fetch_array($stid_most_valuable_player, OCI_BOTH);
+	$row_most_goals = oci_fetch_array($stid_most_goals, OCI_BOTH);
+	$row_most_assists = oci_fetch_array($stid_most_assists, OCI_BOTH);
+	$row_most_saves = oci_fetch_array($stid_most_saves, OCI_BOTH);
+	$row_most_red_cards = oci_fetch_array($stid_most_red_cards, OCI_BOTH);
+	$row_most_yellow_cards = oci_fetch_array($stid_most_yellow_cards, OCI_BOTH);
+	
+?>
+
+<table border="0px" style="background: rgba(255, 255, 255, 0.01);" cellpadding="10px" cellspacing="6px">
+    <tr>
+      <td>
+        <table border="0px" style="background: rgba(255, 255, 255, 0.08);" cellpadding="10px" cellspacing="10px">
+    	<tr>
+        	<td>
+            	 <font size="6px">Current statistics</font>
+            </td>
+        </tr>
+        </table>
+        
+        <table border="0px" style="background: rgba(255, 255, 255, 0.14);" cellpadding="10px" cellspacing="10px">
+    	<tr>
+        	<td>
+                <font size="2px">Most valuable person</font><br>
+       			<font size="6px" class="accent short_line_height"><?php echo $row_most_valuable_player[0]; ?></font>
+            </td>
+        </tr>
+        </table>
+        
+        <table border="0px" style="background: rgba(255, 255, 255, 0.14);" cellpadding="10px" cellspacing="10px">
+    	<tr>
+        	<td>
+                <font size="2px">Top scorer</font><br>
+       			<font size="6px" class="accent short_line_height"><?php echo $row_most_goals[0]; ?></font>
+            </td>
+        	<td>
+                <font size="2px">Most Assists</font><br>
+       			<font size="6px" class="accent short_line_height"><?php echo $row_most_assists[0]; ?></font>
+            </td>
+        </tr>
+        </table>
+        
+        <table border="0px" style="background: rgba(255, 255, 255, 0.14);" cellpadding="10px" cellspacing="10px">
+    	<tr>
+        	<td>
+                <font size="2px">Best goalkeeper</font><br>
+       			<font size="6px" class="accent short_line_height"><?php echo $row_most_saves[0]; ?></font>
+            </td>
+        </tr>
+        </table>
+        
+        <table border="0px" style="background: rgba(255, 255, 255, 0.14);" cellpadding="10px" cellspacing="10px">
+    	<tr>
+        	<td>
+                <font size="2px">Most red cards</font><br>
+       			<font size="6px" class="accent short_line_height"><?php echo $row_most_red_cards[0]; ?></font>
+            </td>
+            <td>
+                <font size="2px">Most yellow cards</font><br>
+       			<font size="6px" class="accent short_line_height"><?php echo $row_most_yellow_cards[0]; ?></font>
+            </td>
+        </tr>
+        </table>
+        
+      </td>
+      
+      <td>
+      </td>
+      
+      <td valign="top">
+        
+    <?php
+	//Most dominant league in terms of goals
+	$query_dom_league = "select * from (select l1.TITLE, sum(s1.FTAG + s1.FTHG) from scores s1,league l1 where l1.ID = s1.div group by l1.TITLE order by  sum(s1.FTAG + s1.FTHG) desc) where rownum<=8";
+	$stid_dom_league = oci_parse($conn, $query_dom_league);
+	oci_execute($stid_dom_league);
+?>
+        
+        <table border="0px" style="background: rgba(255, 255, 255, 0.08);" cellpadding="10px" cellspacing="10px">
+        <tr>
+        	<td>
+       			<font size="6px">League</font>
+            </td>
+            <td></td>
+            <td>
+       			<font size="6px">Goals</font>
+            </td>
+        </tr>
+        <?php 
+			while(($row_dom_league = oci_fetch_array($stid_dom_league, OCI_BOTH)) != false){
+		$num_rows_dom_league = oci_num_rows($stid_dom_league);
+		if($row_dom_league[0] !=''){
+			
+		?>
+        
+    	<tr>
+        	<td>
+       			<font><?php echo $row_dom_league[0];  ?></font>
+            </td>
+            <td></td>
+            <td align="center">
+       			<font><?php echo $row_dom_league[1];  ?></font>
+            </td>
+        </tr>
+        <?php 
+			}
+		}
+		?>
+        </table>
+        
+        </td>  
+        
+        </tr>
+        </table>
+        
+        
+        <!-- bottom padding -->
+    
+        <br><br><br><br><br>
     </div>
         
      
@@ -454,6 +611,8 @@ document.redirect.submit();
     <button class="button_content_alt button-block" id="pr_teams_1">Proceed</button>
     </div>
     
+    
+    
     <!-- Page 2 -->
     <div id="ma_right_teams_2" class="hidden" style="padding-top: 0px;">
     <font size="+2">Teams - <span id="team_title_1"></span></font><hr><br>
@@ -461,15 +620,18 @@ document.redirect.submit();
     
     <div id="teams_info_page"></div>
     
-    <!-- Teams Query 1 -->
     
-    <br><br><br>
-1. Total number of wins by the team.
-<button style="float: right; margin-right:10px;" class="button_content_alt button-block" id="eq_teams_1">Execute</button><hr class="hr_alt"><br>
+    
+    <br>
+<br>
 
+<hr/>
+  
+    
+ 
  
     <!-- Bottom Padding -->
-    <br><br><br>
+    <br><br><br><br><br><br>
 
     </div>
     
@@ -549,4 +711,3 @@ document.redirect.submit();
 
 </body>
 </html>
-

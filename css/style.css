@@ -121,6 +121,7 @@ div#left_menu {
     -webkit-box-shadow: 10px 0 5px -14px rgba(0,0,0,0.20);
     box-shadow: 10px 0 5px -8px rgba(0,0,0,0.20);
     float: left;
+    overflow:auto;
 }
 
 div#right_menu {

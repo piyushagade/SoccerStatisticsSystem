@@ -107,6 +107,7 @@ $year_count = $year_count - 1;
 <link rel="stylesheet" type="text/css" href="css\style.css">
 <link rel="stylesheet" type="text/css" href="css\ma_right_content_style.css">
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -271,16 +272,46 @@ $year_count = $year_count - 1;
         <font size="2px">Loss</font><br>
         <font size="32px" class="accent short_line_height"><?php echo  $row_dead_opponenet_away[1]; } }?></font>
         </td>
-</td>
 
-        </tr>
+ </tr>
 </table>
-<br>
-<br>
 
-<hr class="hr_alt"/>
+
+<br><hr/><br><br>
+ 
+<font class="black" size="+2">Comapare with other teams</font>
+<br><hr class="hr_alt"/><br>  
+
+To begin, select a team from the drop-down menu.
+    <br><br>
+
     
+    <?php
+     	$query_teams = "SELECT ID, LEAGUE FROM TEAM where league=(select league from TEAM where id='$selected_team') order by id asc";
+		$teams = oci_parse($conn, $query_teams);
+		oci_execute($teams);
+	?>
+    Select a team:
+    <Select class="input_alt" id="selected_team_compare" name="selected_team_compare">
+    <?php
+	while(($row_teams = oci_fetch_array($teams, OCI_BOTH)) != false){
+		$num_rows_teams = oci_num_rows($teams);
+		if($row_teams[0] !=''){
+			echo '<option value="'.$row_teams[0].'">'.$row_teams[0].'</option>';
+		}
+	}
+	?>
 
+ 	</Select><br>
+    
+    <button class="button_content_alt button-block" id="pr_team_compare">Compare</button>
+    <br><br>
+
+
+
+
+<!-- *************************************** Import scripts ******************************************* -->
+	<script type="text/javascript" src="js/team_queries.js" ></script>
 
 
 </body>
