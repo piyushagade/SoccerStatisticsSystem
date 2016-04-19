@@ -2,7 +2,7 @@
 Soccer Statistics System (S3)
 =======================
 
-Click to edit project descriptionS3 (Soccer Statistics System) is an interactive web application that serves users stats on soccer, like, the chances of a team winning against another in a fixture based on previous performances, or most valuable players in two teams and their comparisons, or search for a player or a team, etc
+S3 (Soccer Statistics System) is an interactive web application that serves users stats on soccer, like, the chances of a team winning against another in a fixture based on previous performances, or most valuable players in two teams and their comparisons, or search for a player or a team, etc
 
 Features
 -----------
