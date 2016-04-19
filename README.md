@@ -51,9 +51,9 @@ Screenshots
 | ![MVP Result][5] |
 
 
-| Sign In Page | 
+| Sign-In Page | 
 |:-:|:-:|:-:|:-:|
-| ![Sign In Page][7] |
+| ![Sign-In Page][7] |
 
 
 | Register Page | 
