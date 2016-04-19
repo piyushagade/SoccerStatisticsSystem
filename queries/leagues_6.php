@@ -48,7 +48,7 @@ while($ns!=-1){
 	
 
 // Execute the query
-//Total goals by Away team scoring only in 2nd half
+//Most goals by Away team scoring only in 2nd half
  	$query_main = "select * from (select awayteam,sum(ftag) from GAMES G, SCORES S, RESULT R where G.ID = R.ID AND G.ID = S.ID AND G.DIV = R.DIV AND G.DIV = S.DIV AND htag = 0 and ftag > htag and G.div = '$div' and ($like_statement) group by awayteam order by sum(ftag) desc) where rownum <= '$rank'";
 	$stid_main = oci_parse($conn, $query_main);
 	oci_execute($stid_main);
@@ -74,7 +74,7 @@ while($ns!=-1){
 
 <center>
 <br>
-<span>Following table shows the <u>top ten</u> away teams in <u><?php echo $selected_league ?></u> that managed to score only in the second half.<br>
+<span>Following table shows the <u>top <?php echo $rank; ?></u> away teams in <u><?php echo $selected_league ?></u> that managed to score only in the second half.<br>
 The teams have been ranked based on number of such goals in ascending order. The score represents number of such goals.</span>
 <br><br>
 

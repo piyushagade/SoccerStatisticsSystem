@@ -71,7 +71,7 @@ while($ns!=-1){
 
 <center>
 <br>
-<span>Following table shows the <u>top ten</u> away teams in <u><?php echo $selected_league ?></u> that managed to score only in the second half.<br>
+<span>Following table shows the <u>top <?php echo $rank; ?></u> away teams in <u><?php echo $selected_league ?></u> that managed to score only in the second half.<br>
 The teams have been ranked based on number of such matches in ascending order. The score represents number of such matches.</span>
 <br><br>
 

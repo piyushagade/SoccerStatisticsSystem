@@ -74,7 +74,7 @@ while($ns!=-1){
 
 <center>
 <br>
-<span>Following table shows the total number of games in <u><?php echo $selected_league ?></u> where each away team won the match while trailing in the first half.<br>
+<span>Following table shows the total number of games in <u><?php echo $selected_league ?></u> where each away team won the match despite trailing in the first half.<br>
 The teams have been ranked based on number of such matches in ascending order. The score represents number of such matches.</span>
 <br><br>
 

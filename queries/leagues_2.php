@@ -66,14 +66,13 @@ while($ns!=-1){
 </head>
 <body>
 
-
 <center>
 <br>
-<span>Following table shows the <u>top ten</u> teams in <u><?php echo $selected_league ?></u> that performed better than other teams on away grounds.<br>
+<span>Following table shows the <u>top <?php echo $rank; ?></u> teams in <u><?php echo $selected_league ?></u> that performed better than other teams on away grounds.<br>
 The teams have been ranked based on number of away ground wins in ascending order. The score represents number of such wins.</span>
 <br><br>
 
-    <table class="result_table">
+<table class="result_table">
     <tr><td class="accent"><font size="+1">Team</font></td><td class="accent"><font size="+1">Score</font></td></tr>
 <?php
 	while(($row_main = oci_fetch_array($stid_main, OCI_BOTH)) != false){

@@ -81,8 +81,8 @@ else
 <head>
 <meta charset="utf-8">
 <title>Soccer Statistics System</title>
-<link rel="stylesheet" type="text/css" href="css\style.css">
-<link rel="stylesheet" type="text/css" href="css\ma_right_content_style.css">
+<link rel="stylesheet" type="text/css" href="..\css\style.css">
+<link rel="stylesheet" type="text/css" href="..\css\ma_right_content_style.css">
 
 </head>
 <body>
@@ -125,7 +125,7 @@ else
         	<td>Defender</td>
         	<td><?php echo $row_d_1[3]; ?></td>
         </tr>
-        
+        <?php $points_sum_1 = $row_m_1[3] + $row_a_1[3] + $row_g_1[3] + $row_d_1[3]; ?>
 </table>
 
 <br><br>
@@ -163,8 +163,26 @@ else
         	<td>Defender</td>
         	<td><?php echo $row_d_2[3]; ?></td>
         </tr>
+		<?php $points_sum_2 = $row_m_2[3] + $row_a_2[3] + $row_g_2[3] + $row_d_2[3]; ?>
+</table><br><br>
 
-</table>
+<?php
+ 	
+	if($points_sum_1 > $points_sum_2){
+		echo $mvp_1." ";
+		?>
+        	seems to have a more promising squadron compared to that of
+        <?php	
+		echo " ".$mvp_2;
+	}
+	else if($points_sum_1 < $points_sum_2){
+		echo $mvp_2." ";
+		?>
+        	seems to have a more promising squadron compared to that of
+        <?php	
+		echo " ".$mvp_1.".";	
+	}
+?>
 </center>
 
 

@@ -9,3 +9,14 @@ $('#search_player').click(function (e) {
 	}
 
 });
+
+$('#search_team').click(function (e) {
+	
+	sParameter = $("#selected_search_player").val().replace(/ /g,"%20");
+	
+	if(sParameter != 'default'){
+    	showResultFrame();
+    	$("#result_frame").load("queries/search_team.php?player="+sParameter);
+	}
+
+});

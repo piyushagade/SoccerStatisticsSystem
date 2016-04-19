@@ -142,13 +142,13 @@ document.redirect.submit();
     <!-- ****************************** Right Area Content ***************************************** -->
     <div id="right_menu">
     
-    <!-- *************************************** Default Page ************************************** -->
+    <!-- *************************************** Home Page ************************************** -->
     <div id="ma_right_default">
     <font size="+2">Welcome, <span class="accent"><?php echo $name ?></span></font>
     
     <br><hr><br>
         <span class"paragraph_1">
-        Soccer Statistics System is an interactive application that offers user intriguing facts about soccer.<br><br>Know the chances of your favourite team winning against another based on previous performances, or probability of a player scoring against a team, or whether a team will score in first half or the second of the match, etc.
+        Soccer Statistics System is an interactive application that offers user intriguing facts about soccer.<br><br>Know the chances of your favourite team winning against another based on previous performances, or most valuable players in two teams and their comparisions, or search for a player or a team, etc.
         </span><hr class="hr_alt"/><br>
         <br>
         
@@ -206,11 +206,17 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
         </tr>
         </table>
         
+        
+        <?php if($row_most_valuable_player[2] === 'm'){ $mvp_pos = 'Mid-fielder';}
+		else if($row_most_valuable_player[2] === 'a'){ $mvp_pos = 'Striker';}
+		else if($row_most_valuable_player[2] === 'd'){ $mvp_pos = 'Defender';}
+		else if($row_most_valuable_player[2] === 'g'){ $mvp_pos = 'Goalkeeper';} ?>
         <table border="0px" style="background: rgba(255, 255, 255, 0.14);" cellpadding="10px" cellspacing="10px">
     	<tr>
         	<td>
                 <font size="2px">Most valuable person</font><br>
-       			<font size="6px" class="accent short_line_height"><?php echo $row_most_valuable_player[0]; ?></font>
+       			<font size="6px" class="accent_dark short_line_height"><?php echo $row_most_valuable_player[0]; ?></font><br>
+                <font size="2px" class="black minute_line_height"><?php echo $mvp_pos.", "; ?></font><font size="2px" class="black minute_line_height"><?php echo $row_most_valuable_player[1]; ?></font>
             </td>
         </tr>
         </table>
@@ -219,11 +225,13 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
     	<tr>
         	<td>
                 <font size="2px">Top scorer</font><br>
-       			<font size="6px" class="accent short_line_height"><?php echo $row_most_goals[0]; ?></font>
+       			<font size="6px" class="accent_dark short_line_height"><?php echo $row_most_goals[0]; ?></font><br>
+                <font size="2px" class="black minute_line_height"><?php echo $row_most_goals[1].", Goals: "; ?></font><font size="2px" class="black minute_line_height"><?php echo $row_most_goals[2]; ?></font>
             </td>
         	<td>
                 <font size="2px">Most Assists</font><br>
-       			<font size="6px" class="accent short_line_height"><?php echo $row_most_assists[0]; ?></font>
+       			<font size="6px" class="accent_dark short_line_height"><?php echo $row_most_assists[0]; ?></font><br>
+                <font size="2px" class="black minute_line_height"><?php echo $row_most_assists[1].", Assits: "; ?></font><font size="2px" class="black minute_line_height"><?php echo $row_most_assists[2]; ?></font>
             </td>
         </tr>
         </table>
@@ -232,7 +240,8 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
     	<tr>
         	<td>
                 <font size="2px">Best goalkeeper</font><br>
-       			<font size="6px" class="accent short_line_height"><?php echo $row_most_saves[0]; ?></font>
+       			<font size="6px" class="accent_dark short_line_height"><?php echo $row_most_saves[0]; ?></font><br>
+                <font size="2px" class="black minute_line_height"><?php echo $row_most_saves[1].", Saves: "; ?></font><font size="2px" class="black minute_line_height"><?php echo $row_most_saves[2]; ?></font>
             </td>
         </tr>
         </table>
@@ -241,11 +250,13 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
     	<tr>
         	<td>
                 <font size="2px">Most red cards</font><br>
-       			<font size="6px" class="accent short_line_height"><?php echo $row_most_red_cards[0]; ?></font>
+       			<font size="6px" class="accent_dark short_line_height"><?php echo $row_most_red_cards[0]; ?></font><br>
+                <font size="2px" class="black minute_line_height"><?php echo $row_most_red_cards[1].", Red cards: "; ?></font><font size="2px" class="black minute_line_height"><?php echo $row_most_red_cards[2]; ?></font>
             </td>
             <td>
                 <font size="2px">Most yellow cards</font><br>
-       			<font size="6px" class="accent short_line_height"><?php echo $row_most_yellow_cards[0]; ?></font>
+       			<font size="6px" class="accent_dark short_line_height"><?php echo $row_most_yellow_cards[0]; ?></font><br>
+                <font size="2px" class="black minute_line_height"><?php echo $row_most_yellow_cards[1].", Yellow cards: "; ?></font><font size="2px" class="black minute_line_height"><?php echo $row_most_yellow_cards[2]; ?></font>
             </td>
         </tr>
         </table>
@@ -259,7 +270,7 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
         
     <?php
 	//Most dominant league in terms of goals
-	$query_dom_league = "select * from (select l1.TITLE, sum(s1.FTAG + s1.FTHG) from scores s1,league l1 where l1.ID = s1.div group by l1.TITLE order by  sum(s1.FTAG + s1.FTHG) desc) where rownum<=8";
+	$query_dom_league = "select * from (select l1.TITLE, sum(s1.FTAG + s1.FTHG) from scores s1,league l1 where l1.ID = s1.div group by l1.TITLE order by  sum(s1.FTAG + s1.FTHG) desc) where rownum<=10";
 	$stid_dom_league = oci_parse($conn, $query_dom_league);
 	oci_execute($stid_dom_league);
 ?>
@@ -345,6 +356,10 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
     <div id="ma_right_leagues_2" class="hidden" style="padding-top: 0px;">
     <font size="+2">Leagues - <span id="league_title_1"></span></font><hr><br>
     
+    
+    To see interesting facts about <span id="league_title_2">.</span>, either use the dropdown options and click on the arrow to execute or use pre-compiled queries by clicking on 'execute'.
+    <br><hr><br>
+    
     <table border="0px" cellpadding="20px" cellspacing="20px">
     <tr><td style="background: rgba(255,255,255,0.1);"><font size="2px">Results to display: </font><input placeholder="10" type="number" id="rank" class="input_rank"/></td>
     <td style="background: rgba(255,255,255,0.1);"><font size="2px">Select # of seasons: </font><input placeholder="15" type="number" id="num_seasons" class="input_rank"/></td>
@@ -355,9 +370,9 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
     
     </tr>
     </table>
-    <br><hr><br>
+    <br><br><br>
     
-    Select one of the following option to see interesting facts of <span id="league_title_2">.</span>
+    <span class="accent">Or</span> Select one of the following options.
     <br><hr><br>
     
     <!-- Leagues Query 1 -->
@@ -369,27 +384,27 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
 <button style="float: right; margin-right:10px;" class="button_content_alt button-block" id="eq_leagues_2">Execute</button><hr class="hr_alt"><br>
 
     <!-- Leagues Query 3 -->
-3. Top home teams with goals scored only in second half.
+3. Top home teams with most games, having scored goals only in second half.
 <button style="float: right; margin-right:10px;" class="button_content_alt button-block" id="eq_leagues_3">Execute</button><hr class="hr_alt"><br>
 
     <!-- Leagues Query 4 -->
-<!--4. Top ten teams with goals most wins as an Away team.
-<button style="float: right; margin-right:10px;" class="button_content_alt button-block" id="eq_leagues_4">Execute</button><hr class="hr_alt"><br>-->
+4. Top home teams with most goals scored in sencond half.
+<button style="float: right; margin-right:10px;" class="button_content_alt button-block" id="eq_leagues_4">Execute</button><hr class="hr_alt"><br>
 
     <!-- Leagues Query 5 -->
-5. Top ten away teams with highest number of matches, having scored in second half only.
+5. Top away teams with most matches, having scored in second half only.
 <button style="float: right; margin-right:10px;" class="button_content_alt button-block" id="eq_leagues_5">Execute</button><hr class="hr_alt"><br>
 
     <!-- Leagues Query 6 -->
-6. Top ten away teams with highest number of goals that were scored in second half only.
+6. Top away teams with most goals that were scored in second half only.
 <button style="float: right; margin-right:10px;" class="button_content_alt button-block" id="eq_leagues_6">Execute</button><hr class="hr_alt"><br>
 
     <!-- Leagues Query 7 -->
-7. Top ten home teams with highest number of matches, having scored in first half only.
+7. Top home teams with highest number of matches, having scored in first half only.
 <button style="float: right; margin-right:10px;" class="button_content_alt button-block" id="eq_leagues_7">Execute</button><hr class="hr_alt"><br>
 
 <!-- Leagues Query 5 -->
-8. Top ten home teams with highest number of goals that were scored in first half only.
+8. Top home teams with highest number of goals that were scored in first half only.
 <button style="float: right; margin-right:10px;" class="button_content_alt button-block" id="eq_leagues_8">Execute</button><hr class="hr_alt"><br>
 
     <!-- Leagues Query 6 -->
@@ -483,7 +498,7 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
 		$search_club = oci_parse($conn, $query_search_club);
 		oci_execute($search_club);
 	?>
-    <span class="accent">Search Players</span><br>
+    <span class="accent_dark">Search Players</span><br>
     Select club:
     <Select id="selected_search_club" name="selected_search_club">
     <option value="default">-</option>
@@ -520,7 +535,7 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
 
  	</Select><br>
     
-    
+    <!--
     Minimum Goals:
     <input placeholder="0" type="number" id="selected_search_min_goals" class="input_rank"/>
     <br>
@@ -529,9 +544,9 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
     <input placeholder="0" type="number" id="selected_search_own_goals" class="input_rank"/>
     <br>
     
+    -->
     <button class="button_content_alt button-block" id="search_player">Search</button>
     </td>
-    
     
     
     
@@ -544,7 +559,7 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
 		oci_execute($search_player);
 	?>
     
-    <span class="accent">Search Teams</span><br>
+    <span class="accent_dark">Search Teams</span><br>
     Select player:
     <Select id="selected_search_player" name="selected_search_player">
     <option value="default">-</option>
@@ -558,10 +573,12 @@ group by player.name,player.club,player.position order by sum(playerdata.p) desc
 
  	</Select><br>
     
-    
+    <!--
     Minimum winning ratio:
     <input placeholder="0" type="number" id="selected_search_min_win_ratio" class="input_rank"/>
     <br>
+    
+    -->
     
     <button class="button_content_alt button-block" id="search_team">Search</button>
     </td>

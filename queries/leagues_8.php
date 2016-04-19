@@ -74,7 +74,7 @@ while($ns!=-1){
 
 <center>
 <br>
-<span>Following table shows the <u>top ten</u> home teams in <u><?php echo $selected_league ?></u> that managed to score only in the first half.<br>
+<span>Following table shows the <u>top <?php echo $rank; ?></u> home teams in <u><?php echo $selected_league ?></u> that managed to score only in the first half.<br>
 The teams have been ranked based on number of such goals in ascending order. The score represents number of such goals.</span>
 <br><br>
 

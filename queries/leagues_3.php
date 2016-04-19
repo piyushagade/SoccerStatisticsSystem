@@ -70,7 +70,7 @@ while($ns!=-1){
 
 <center>
 <br>
-<span>Following table shows the <u>top ten</u> teams in <u><?php echo $selected_league ?></u> that scored second half goals in most number of home ground matches.<br>
+<span>Following table shows the <u>top <?php echo $rank; ?></u> teams in <u><?php echo $selected_league ?></u> that scored only second half goals in most number of home matches.<br>
 The teams have been ranked based on number of such matches in ascending order. The score represents number of such matches.</span>
 <br><br>
 

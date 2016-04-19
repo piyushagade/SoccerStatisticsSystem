@@ -126,7 +126,7 @@ $year_count = $year_count - 1;
         
         <td valign="top">
         <font size="2px">Games played</font><br>
-        <font size="32px" class="accent short_line_height"><?php echo $row_games[0]; $no_games=$row_games[0]; ?></font>
+        <font size="32px" class="accent_dark short_line_height"><?php echo $row_games[0]; $no_games=$row_games[0]; ?></font>
         </td>
 <?php
 		}
@@ -144,7 +144,7 @@ $year_count = $year_count - 1;
         
         <td valign="top">
         <font size="2px">Games won</font><br>
-        <font size="32px" class="accent short_line_height"><?php echo $row_won[0]; $games_won = $row_won[0]; ?></font>
+        <font size="32px" class="accent_dark short_line_height"><?php echo $row_won[0]; $games_won = $row_won[0]; ?></font>
         </td>
 <?php
 		}
@@ -157,7 +157,7 @@ $year_count = $year_count - 1;
 ?>
         <td valign="top">
         <font size="2px">Winning ratio</font><br>
-        <font size="32px" class="accent short_line_height"><?php echo number_format((float)$games_won/$no_games, 2, '.', ''); ?></font>
+        <font size="32px" class="accent_dark short_line_height"><?php echo number_format((float)$games_won/$no_games, 2, '.', ''); ?></font>
         </td>
 
 
@@ -184,12 +184,12 @@ $year_count = $year_count - 1;
 
         <td valign="top">
         <font size="2px">Best year</font><br>
-        <font size="32px" class="accent short_line_height"><?php echo  $best_year ?></font>
+        <font size="32px" class="accent_dark short_line_height"><?php echo  $best_year ?></font>
         </td>
         
         <td valign="top" style="padding-left:20px;">
         <font size="2px">Wins</font><br>
-        <font size="32px" class="accent short_line_height"><?php echo  $best_count[0] ?></font>
+        <font size="32px" class="accent_dark short_line_height"><?php echo  $best_count[0] ?></font>
         </td>
 </td>
 
@@ -207,12 +207,12 @@ $year_count = $year_count - 1;
 ?>
         <td valign="top">
         <font size="2px">Best opponent on home ground</font><br>
-        <font size="32px" class="accent short_line_height"><?php echo  $row_fav_opponenet_home[0].":"; ?></font>
+        <font size="32px" class="accent_dark short_line_height"><?php echo  $row_fav_opponenet_home[0].":"; ?></font>
         </td>
         
         <td valign="top" style="padding-left:10px;">
         <font size="2px">Wins</font><br>
-        <font size="32px" class="accent short_line_height"><?php echo  $row_fav_opponenet_home[1]; } }?></font>
+        <font size="32px" class="accent_dark short_line_height"><?php echo  $row_fav_opponenet_home[1]; } }?></font>
         </td>
 </td>
 
@@ -224,12 +224,12 @@ $year_count = $year_count - 1;
 ?>
         <td valign="top" style="padding-left:30px;">
         <font size="2px">Best opponent on away ground</font><br>
-        <font size="32px" class="accent short_line_height"><?php echo  $row_fav_opponenet_away[0].":"; ?></font>
+        <font size="32px" class="accent_dark short_line_height"><?php echo  $row_fav_opponenet_away[0].":"; ?></font>
         </td>
         
         <td valign="top" style="padding-left:10px;">
         <font size="2px">Wins</font><br>
-        <font size="32px" class="accent short_line_height"><?php echo  $row_fav_opponenet_away[1]; } }?></font>
+        <font size="32px" class="accent_dark short_line_height"><?php echo  $row_fav_opponenet_away[1]; } }?></font>
         </td>
 </td>
 
@@ -248,12 +248,12 @@ $year_count = $year_count - 1;
 ?>
         <td valign="top">
         <font size="2px">Deadliest opponent on home ground</font><br>
-        <font size="32px" class="accent short_line_height"><?php echo  $row_dead_opponenet_home[0].":"; ?></font>
+        <font size="32px" class="accent_dark short_line_height"><?php echo  $row_dead_opponenet_home[0].":"; ?></font>
         </td>
         
         <td valign="top" style="padding-left:10px;">
         <font size="2px">Loss</font><br>
-        <font size="32px" class="accent short_line_height"><?php echo  $row_dead_opponenet_home[1]; } }?></font>
+        <font size="32px" class="accent_dark short_line_height"><?php echo  $row_dead_opponenet_home[1]; } }?></font>
         </td>
 </td>
 
@@ -265,12 +265,12 @@ $year_count = $year_count - 1;
 ?>
         <td valign="top" style="padding-left:30px;">
         <font size="2px">Deadliest opponent on away ground</font><br>
-        <font size="32px" class="accent short_line_height"><?php echo  $row_dead_opponenet_away[0].":"; ?></font>
+        <font size="32px" class="accent_dark short_line_height"><?php echo  $row_dead_opponenet_away[0].":"; ?></font>
         </td>
         
         <td valign="top" style="padding-left:10px;">
         <font size="2px">Loss</font><br>
-        <font size="32px" class="accent short_line_height"><?php echo  $row_dead_opponenet_away[1]; } }?></font>
+        <font size="32px" class="accent_dark short_line_height"><?php echo  $row_dead_opponenet_away[1]; } }?></font>
         </td>
 
  </tr>

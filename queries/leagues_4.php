@@ -70,8 +70,8 @@ while($ns!=-1){
 
 <center>
 <br>
-<span>Following table shows the <u>top ten</u> teams in <u><?php echo $selected_league ?></u> that performed better than other teams on their home grounds.<br>
-The teams have been ranked based on number of home ground wins in ascending order. The score represents number of such wins.</span>
+<span>Following table shows the <u>top <?php echo $rank; ?></u> home teams in <u><?php echo $selected_league ?></u> that scored only in second half.<br>
+The teams have been ranked based on number of goals in such games. The score represents number of such goals.</span>
 <br><br>
 
     <table class="result_table">

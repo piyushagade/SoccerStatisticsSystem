@@ -37,6 +37,11 @@ html{
 	
 }
 
+.accent_dark{
+	color: rgba(227,164,12,1.00);
+	
+}
+
 .black{
     color: rgba(0,0,0,1.00);
 
@@ -736,6 +741,10 @@ span.short{
 
 .short_line_height{
     line-height: 50px;
+}
+
+.minute_line_height{
+    line-height: 10px;
 }
 
 .highlight{
