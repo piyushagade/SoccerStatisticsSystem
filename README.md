@@ -14,7 +14,7 @@ Using S3, following areas can be searched for info.
 * Favourite team
 * Rankings, etc.
 
-The application uses a database, which contains game data since 1997.
+The application uses a database, which contains soccer game data since 1997.
 
 
 
