@@ -37,13 +37,13 @@ Screenshots
 |:-:|:-:|:-:|:-:|
 | ![Teams Page][4] |
 
-| MVP Result | 
-|:-:|:-:|:-:|:-:|
-| ![MVP Result][5] |
-
 | Teams Compare Result | 
 |:-:|:-:|:-:|:-:|
 | ![Teams Compare Result][6] |
+
+| MVP Result | 
+|:-:|:-:|:-:|:-:|
+| ![MVP Result][5] |
 
 | Sign In Page | 
 |:-:|:-:|:-:|:-:|
