@@ -25,29 +25,36 @@ Screenshots
 |:-:|:-:|:-:|:-:|
 | ![Home Page][1] |
 
+
 | Leagues page | 
 |:-:|:-:|:-:|:-:|
 | ![Leagues Page][2] |
+
 
 | Leagues Result | 
 |:-:|:-:|:-:|:-:|
 | ![Leagues Result][3] |
 
+
 | Teams Page | 
 |:-:|:-:|:-:|:-:|
 | ![Teams Page][4] |
+
 
 | Teams Compare Result | 
 |:-:|:-:|:-:|:-:|
 | ![Teams Compare Result][6] |
 
+
 | MVP Result | 
 |:-:|:-:|:-:|:-:|
 | ![MVP Result][5] |
 
+
 | Sign In Page | 
 |:-:|:-:|:-:|:-:|
 | ![Sign In Page][7] |
+
 
 | Register Page | 
 |:-:|:-:|:-:|:-:|
