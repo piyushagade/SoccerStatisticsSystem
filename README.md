@@ -8,11 +8,11 @@ Features
 -----------
 
 Using S3, following areas can be searched for info.
-1. Leagues
-2. Players
-3. Teams
-4. Favourite team
-5. Rankings, etc.
+* Leagues
+* Players
+* Teams
+* Favourite team
+* Rankings, etc.
 
 The application uses a database, which contains game data since 1997.
 
