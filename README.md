@@ -60,6 +60,14 @@ Screenshots
 |:-:|:-:|:-:|:-:|
 | ![Register Page][8] |
 
+
+
+Group members
+---
+1) Aman Chanana
+2) Gowtham Pendyala
+3) Piyush Agade
+
 [1]: http://i.imgur.com/ZTEGKYA.png
 [2]: http://i.imgur.com/ck3ayf7.png
 [3]: http://i.imgur.com/yRIQV8V.png
