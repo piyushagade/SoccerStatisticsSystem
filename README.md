@@ -21,44 +21,21 @@ The application uses a database, which contains soccer game data since 1997.
 Screenshots
 -----------
 
-| Home Page | 
-|:-:|:-:|:-:|:-:|
-| ![Home Page][1] |
+![Home Page][1]
 
+![Leagues Page][2]
 
-| Leagues page | 
-|:-:|:-:|:-:|:-:|
-| ![Leagues Page][2] |
+![Leagues Result][3]
 
+![Teams Page][4]
 
-| Leagues Result | 
-|:-:|:-:|:-:|:-:|
-| ![Leagues Result][3] |
+![Teams Compare Result][6]
 
+![MVP Result][5]
 
-| Teams Page | 
-|:-:|:-:|:-:|:-:|
-| ![Teams Page][4] |
+![Sign-In Page][7]
 
-
-| Teams Compare Result | 
-|:-:|:-:|:-:|:-:|
-| ![Teams Compare Result][6] |
-
-
-| MVP Result | 
-|:-:|:-:|:-:|:-:|
-| ![MVP Result][5] |
-
-
-| Sign-In Page | 
-|:-:|:-:|:-:|:-:|
-| ![Sign-In Page][7] |
-
-
-| Register Page | 
-|:-:|:-:|:-:|:-:|
-| ![Register Page][8] |
+![Register Page][8]
 
 
 
